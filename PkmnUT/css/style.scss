@@ -1,0 +1,121 @@
+$fondoDark: rgb(21, 32, 43);
+$fondoLight: #f8f5e2;
+$navDark: #f5f1d7;
+$navLight: #fdf2ad;
+$textDark: #0dcaf0;
+$textLight: #7a7016;
+
+body {
+    background: $fondoDark;
+    font-family: 'Roboto', sans-serif;
+	color: $textDark;
+    transition: .3s ease all;
+
+    &.light {
+        background: $fondoLight;
+		color: $textLight;
+    }
+}
+
+nav {
+    background: $navDark;
+    transition: .3s ease all;
+
+	body.light & {
+			background: $navLight;
+	}
+
+	.logotipo {
+			width: 80px;
+	}
+
+	.iconosRRSS {
+		width: 35px;
+		border-radius: 100px;
+		box-shadow: 0px 0px 2px 1px rgba(0,0,0,.2);
+	}
+
+	#ddMenu {
+		width: 250px;
+	}
+
+	#login_google {
+		background-color: rgb(207, 237, 255);
+		color: black;
+		
+		#logo_google {
+			width: 15px;
+		}
+	}
+}
+
+.mostrar {
+	display: block;
+}
+
+.ocultar {
+	display: none;
+}
+
+.popups {
+	width: 500px;
+}
+
+.popupPubli {
+	width: 800px;
+}
+
+.mainBlock {
+	padding-top: 110px;
+}
+
+.contentBG {
+	background-color: rgb(13, 202, 240, .2);
+}
+
+#thumbnail {
+	max-width: 60px;
+	max-height: 60px;
+	visibility: hidden;
+}
+
+// SWITCH dia noche
+.switch {
+	background: orange;
+	border-radius: 1000px;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	outline: none;
+	&::after {
+		content: "";
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		background: #F1F1F1;
+		top: 2;
+		left: unset;
+		right: 0;
+		border-radius: 100px;
+		transition: .3s ease all;
+		box-shadow: 0px 0px 2px 2px rgba(0,0,0,.2);
+	}
+	&.active {
+		background: #343D5B;
+		color: #000;
+		&::after {
+			right: unset;
+			left: 0;
+		}
+	}
+	span {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		display: block;
+		background: none;
+		color: #fff;
+	}
+}

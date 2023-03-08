@@ -1,0 +1,1464 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pkmn Unbreakable Ties</title>
+	<!-- Bootstrap docs -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<!-- Firebase docs -->
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+	<!-- Otros -->
+	<script src="https://kit.fontawesome.com/1834a6f109.js" crossorigin="anonymous"></script>
+	<link rel="icon" type="image/png"
+		href="img/navicon.png">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<!-- ====================:NAVBAR:==================== -->
+	<nav class="navbar navbar-expand-lg fixed-top border-bottom border-info border-opacity-50">
+		<div class="container-fluid">
+			<a class="navbar-brand">
+				<img class="logotipo"
+					src="img/logo.png"
+					alt="Logo Pokémon Unbreakable Ties">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+				<!-- Enlaces de la navbar -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5">
+					<li class="nav-item mx-2">
+						<a class="nav-link linkJuego" id="linkJuego" aria-current="page" href="#">
+							El juego
+						</a>
+					</li>
+					<li class="nav-item mx-2">
+						<a class="nav-link linkNoticias" id="linkNoticias" aria-current="page" href="#">
+							Foro
+						</a>
+					</li>
+					<li class="nav-item mx-2">
+						<a class="nav-link position-relative top-50 start-50 translate-middle linkFaqs" id="linkFaqs"
+							aria-current="page" href="#">
+							FAQs
+						</a>
+					</li>
+					<li class="nav-item mx-2">
+						<a class="nav-link position-relative top-50 start-50 translate-middle linkForo ocultar"
+							id="linkForo" aria-current="page" href="#" onclick="allUsers()">
+							Usuarios
+						</a>
+					</li>
+					<!-- Dropdown de descargas -->
+					<li class="nav-item mx-3">
+						<div class="dropdown top-50 translate-middle-y">
+							<button class="btn btn-outline-secondary dropdown-toggle" type="button"
+								data-bs-toggle="dropdown" aria-expanded="false">
+								Descargas
+							</button>
+							<ul class="dropdown-menu dropdown-menu-dark">
+								<li>
+									<a class="dropdown-item my-1"
+										href="https://mega.nz/file/qodi3JgC#stUS6vj1WNffod-nqYKsUT64TzyL3hkB4tTOKYEans0"
+										target="_blank">
+										<strong>Beta 2.7 Pokémon Unbreakable Ties</strong>
+									</a>
+								</li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<h6 class="dropdown-header">
+										Versiones antiguas
+									</h6>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://mega.nz/file/j8snHJwC#bEjWXE--ZjPKsRXBKNF2DyadC8Ga4SISZ_4JiDxJfP0"
+										target="_blank">
+										Beta v2.0 Pokémon UT
+									</a>
+								</li>
+								<li>
+									<a class="dropdown-item"
+										href="https://mega.nz/file/X4VHXRrb#XDBZbZoYIXVXZLmF8T8ATKDClK9RGZSwvW3KbjLmkmc"
+										target="_blank">
+										Beta v1.4 Pokémon UT
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+
+				<!-- Botón de editar Categorias (solo usuario pkmnUT) -->
+				<button type="button" class="btn btn-info mx-1 border border-secondary ocultar" id="editarCategorias">
+					Editar categorias
+				</button>
+
+				<!-- Botón de publicación (solo usuario pkmnUT) -->
+				<button type="button" class="btn btn-primary mx-1 border border-secondary ocultar" id="publicaciones">
+					Crear publicación
+				</button>
+
+				<!-- Botón usuario (usuarios registrados)-->
+				<button type="button" class="btn btn-info mx-1 border border-secondary ocultar" id="perfil">
+					Mi perfil
+				</button>
+
+				<!-- Botón de cierre de sesión (usuarios registrados) -->
+				<button type="button" class="btn btn-warning ms-3 border border-danger ocultar fs-6" id="registred">
+					Cerrar sesión
+				</button>
+
+				<!-- Login dropdown  -->
+				<div class="dropdown ms-3 my-1" id="iniciar_sesion">
+					<button type="button" class="btn btn-info border border-primary dropdown-toggle"
+						data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+						Iniciar sesión
+					</button>
+					<form class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end p-4" id="ddMenu">
+						<div class="mb-3">
+							<label for="exampleDropdownFormEmail2" class="form-label">
+								Usuario
+							</label>
+							<input type="email" class="form-control" id="usuario_god" placeholder="email@ejemplo.com">
+						</div>
+						<div class="mb-3">
+							<label for="exampleDropdownFormPassword2" class="form-label">
+								Contraseña
+							</label>
+							<input type="password" class="form-control" id="contrasenya_god" placeholder="Ejemplo1234">
+						</div>
+						<div>
+							<button type="button" class="btn btn-primary" id="login_dropdown">
+								Acceder
+							</button>
+							<button type="button" class="btn btn-secondary fs-6 position-absolute end-0 me-4"
+								id="registrar_usuario">
+								Registrar
+							</button>
+						</div>
+						<div class="mt-2">
+							<button type="button" onclick="googleSignin()" class="btn w-100 align-items-center"
+								id="login_google">
+								Acceder con Google <img
+									src="img/icon-google.png"
+									class="mb-1 ms-1" id="logo_google" alt="Logo de Google">
+							</button>
+						</div>
+						<div class="mt-4 text-center">
+							<small>¿No recuerdas tu contraseña?
+								<button type="button" class="btn p-0 link-warning" onclick="recu_password.showModal();">
+									<p class="m-0" id="recuperar_constrasenya">¡Haz click aquí!</p>
+								</button>
+							</small>
+						</div>
+					</form>
+				</div>
+
+				<!-- Botones redes sociales -->
+				<div class="ms-3">
+					<a href="https://twitter.com/PkmnUnbreakTies" target="_blank">
+						<img class="iconosRRSS"
+							src="img/icon-twitter.png"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+							data-bs-title="Twitter" alt="Twitter">
+					</a>
+				</div>
+
+				<div class="mx-1">
+					<a href="https://www.youtube.com/@GamingESPSS" target="_blank">
+						<img class="iconosRRSS"
+							src="img/icon-youtube.png"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+							data-bs-title="Youtube" alt="Youtube">
+					</a>
+				</div>
+
+				<div class="me-3">
+					<a href="https://www.twitch.tv/ssamurai_98" target="_blank">
+						<img class="iconosRRSS"
+							src="img/icon-twitch.png"
+							data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+							data-bs-title="Twitch" alt="Twitch">
+					</a>
+				</div>
+
+				<!-- Switch modo diurno/nocturno -->
+				<button class="switch" id="switch">
+					<span><i class="fa-solid fa-sun"></i></span>
+					<span><i class="fa-solid fa-moon"></i></span>
+				</button>
+			</div>
+		</div>
+	</nav>
+	<!-- /navbar -->
+
+	<!-- ====================:CONTENIDO PRINCIPAL:==================== -->
+	<div class="container mx-auto mainBlock">
+
+		<div class="col-2">
+			<div id="alert" role="alert"></div>
+		</div>
+
+		<!-- Necesario para login -->
+		<div class="container p-5 ocultar">
+			<div class="row">
+				<div class="col-8 offset-2 ocultar" id="loginForm">
+					<form>
+						<div class="form-group row">
+							<label for="title" class="col-4 col-form-label mt-3">Correo electrónico:</label>
+							<div class="col-8">
+								<input type="email" class="form-control mt-3" id="loginEmail">
+							</div>
+						</div>
+						<div class="form-group row">
+							<label for="content" class="col-4 col-form-label mt-3">Contraseña:</label>
+							<div class="col-8">
+								<input type="password" class="form-control mt-3" id="loginPassword">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="offset-4 col-8">
+								<button type="button" id="newUser"
+									class="btn btn-outline-primary float-right mt-3">Registrar un
+									nuevo usuario</button>
+								<button type="button" id="login"
+									class="btn btn-outline-primary float-right mt-3">Entrar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Popup de registro-->
+		<dialog class="popup_xD rounded-2 border border-secondary popups" id="modal">
+			<div class="mx-3 align-items-center" id="registerForm">
+				<form>
+					<div class="form-group row mb-2">
+						<label for="title" class="col-4 col-form-label"> <small>Correo electrónico:</small></label>
+						<div class="col-8">
+							<input type="email" class="form-control position-relative top-50 start-50 translate-middle"
+								id="signupEmail" placeholder="email@ejemplo.com">
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label for="content" class="col-4 col-form-label"><small>Contraseña:</small></label>
+						<div class="col-8">
+							<input type="password" class="form-control" id="signupPassword"
+								placeholder="Introduce tu contraseña">
+						</div>
+					</div>
+					<div class="form-group row mb-3">
+						<label for="content" class="col-4 col-form-label"><small>Repetir contraseña:</small></label>
+						<div class="col-8">
+							<input type="password"
+								class="form-control position-relative top-50 start-50 translate-middle"
+								id="signupPasswordConfirm" placeholder="Repite la contraseña">
+						</div>
+					</div>
+					<div class="form-group row justify-content-center">
+						<div class="w-auto">
+							<button type="button" class="btn btn-primary me-2" id="signup" onclick="modal.close();">
+								Enviar
+							</button>
+							<button type="button" class="btn btn-secondary ms-2" id="close_register">
+								Cancelar
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<!-- popup de recuperación de contraseña -->
+		<dialog class="popup_contraseña rounded-2 border border-secondary popups" id="recu_password">
+			<div class="mx-3 d-block align-items-center" id="signupForm">
+				<form>
+					<div class="form-group row mb-3">
+						<label for="title" class="col-3 col-form-label">
+							Correo electrónico:
+						</label>
+						<div class="col-9">
+							<input type="email" class="form-control position-relative top-50 start-50 translate-middle"
+								id="mail" placeholder="email@ejemplo.com">
+						</div>
+					</div>
+					<div class="form-group row justify-content-center">
+						<div class="w-auto">
+							<button type="button" class="btn btn-primary me-2" onclick="resetPasswordFunction()">
+								Enviar
+							</button>
+							<button type="button" id="close_recover" class="btn btn-secondary ms-2" onclick="recu_password.close();">
+								Cancelar
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<!-- Popup editar Categorias (usuario pkmnUT) -->
+		<dialog class="popup_publicacion rounded-2 border border-secondary popupPubli" id="popupCategorias">
+			<div id="mostrarCategoria">
+
+			</div>
+			<form>
+				<div class="form-group row">
+					<label for="namecategory" class="col-2 col-form-label">Nombre de la nueva categoría:</label>
+					<div class="col-10">
+						<input type="text" class="form-control position-relative top-50 start-50 translate-middle"
+							id="namecategory" placeholder="Introduce el nombre de la categoría">
+					</div>
+				</div>
+				<div class="form-group row justify-content-center">
+					<div class="offset-4 col-8">
+						<button type="button" class="btn btn-primary me-2" style="margin-right: 20px;"
+							onclick="crearCategoria()">Crear categoría</button>
+						<button type="button" onclick="popupCategorias.close(); loadItemsFecha()"
+							class="btn btn-secondary ms-2">X</button>
+					</div>
+				</div>
+				<div class="d-flex flex-wrap justify-content-around" id="categoriasCreadas">
+
+				</div>
+			</form>
+		</dialog>
+
+		<!-- Popup de publicación (usuario pkmnUT) -->
+		<dialog class="popup_publicacion rounded-2 border border-secondary popupPubli" id="publicacion">
+			<div class="mx-5" id="itemsForm">
+				<form>
+					<div class="form-group row">
+						<label for="title" class="col-2 col-form-label">Título:</label>
+						<div class="col-10">
+							<input type="text" class="form-control position-relative top-50 start-50 translate-middle"
+								id="username" placeholder="Introduce el título de la publicación">
+						</div>
+					</div>
+					<div class="form-group row">
+						<select name="categoria" class="w-50 form-select form-select-sm m-2" id="categoria">
+
+						</select>
+					</div>
+					<div class="form-group row">
+						<label for="content" class="col-2 col-form-label">Descripción:</label>
+						<div class="col-10">
+							<textarea class="form-control" id="descripcion"
+								placeholder="Escribe aqui el contenido"></textarea>
+						</div>
+					</div>
+					<div class="form-group row mt-1">
+						<label for="image" class="col-3 col-form-label">Añadir media:</label>
+						<div class="col-6">
+							<input type="file" accept="image/png, image/jpg, image/jpeg audio/mp3, video/mp4, video/mkv"
+								class="form-control-file position-relative top-50 start-50 translate-middle" id="image">
+						</div>
+						<div class="col-2">
+							<img class="rounded" id="thumbnail" alt="thumbnail">
+						</div>
+					</div>
+					<div class="form-group flex m-3">
+						<input type="checkbox" name="default" id="default" checked>
+						<label for="default">Mostrar la imagen <small>(Si no has subido una imagen, aparecerá otra por
+								defecto)</small></label>
+					</div>
+					<div class="form-group row justify-content-center">
+						<div class="offset-4 col-8">
+							<button type="button" id="save" class="btn btn-primary me-2" onclick="guardar()">
+								Guardar
+							</button>
+							<button type="button" id="cancelar" class="btn btn-secondary ms-2" onclick="publicacion.close();">
+								Cancelar
+							</button>
+						</div>
+					</div>
+					<input type="hidden" id="elementId">
+				</form>
+			</div>
+		</dialog>
+
+		<!-- Popup editar publicacion -->
+		<dialog class="popup_publicacion rounded-2 border border-secondary popupPubli" id="editPublicacion">
+			<div class="mx-5" id="formItems">
+				<form>
+					<div class="form-group row">
+						<label for="title" class="col-2 col-form-label">Título:</label>
+						<div class="col-10">
+							<input type="text" class="form-control position-relative top-50 start-50 translate-middle"
+								id="nameuser" placeholder="Introduce el título de la publicación">
+						</div>
+					</div>
+					<div class="form-group row">
+						<select name="categoria" class="w-50 form-select form-select-sm m-2" id="categories">
+							<option value="Random">Elige una categoría</option>
+							<option value="Random">Random</option>
+							<option value="Importante">Importante</option>
+						</select>
+					</div>
+					<div class="form-group row">
+						<label for="content" class="col-2 col-form-label">Descripción:</label>
+						<div class="col-10">
+							<textarea class="form-control" id="description"
+								placeholder="Escribe aqui el contenido"></textarea>
+						</div>
+					</div>
+					<div class="form-group row mt-1">
+						<label for="image" class="col-3 col-form-label">Añadir imagen:</label>
+						<div class="col-6">
+							<input type="file" accept="image/png, image/jpg, image/jpeg audio/mp3, video/mp4, video/mkv"
+								class="form-control-file position-relative top-50 start-50 translate-middle"
+								id="imagen">
+						</div>
+						<div class="col-2">
+							<img class="rounded" id="thumbnail2" alt="thumbnail2">
+						</div>
+					</div>
+					<div class="form-group flex m-3">
+						<input type="checkbox" name="default" id="show" checked>
+						<label for="default">Mostrar la imagen <small>(Si no has subido una imagen, aparecerá otra por
+								defecto)</small></label>
+					</div>
+					<div class="form-group row justify-content-center">
+						<div class="offset-4 col-8" id="editarId">
+						</div>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<!-- Popup de comentarios (Responder) -->
+		<dialog class="popup_comentario border border-secondary rounded-2 popupPubli" id="comentario">
+			<div class="mx-3" id="items">
+				<form>
+					<div class="form-group row mb-3">
+						<label for="content" class="col-3 col-form-label">Comentario:</label>
+						<div class="col-9">
+							<textarea class="form-control" id="descriptComent"
+								placeholder="Escribe aquí el comentario"></textarea>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="offset-4 col-8" id="afegeix">
+						</div>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<!-- Popup Crear usuarios-->
+		<dialog class="popup_xD rounded-2 border border-secondary popups" id="crearUsuario">
+			<div class="mx-3 align-items-center" id="user">
+				<form>
+					<div class="form-group row mb-2">
+						<label for="title" class="col-4 col-form-label">Correo de usuario:</label>
+						<div class="col-8">
+							<input type="email" class="form-control position-relative top-50 start-50 translate-middle"
+								id="emailUser" disabled>
+						</div>
+					</div>
+					<div class="form-group row mb-2">
+						<label for="content" class="col-4 col-form-label">Nombre de usuario:</label>
+						<div class="col-8" placeholder="Introduce tu nombre de usuario">
+							<input type="text" class="form-control" id="name"
+								placeholder="Introduce tu nombre de usuario">
+						</div>
+					</div>
+					<div class="form-group row mb-3">
+						<label for="content" class="col-3 col-form-label">Descripción:</label>
+						<div class="col-9">
+							<textarea class="form-control" id="descripcionUsuario"
+								placeholder="Descripción del usuario"></textarea>
+						</div>
+					</div>
+					<div class="form-group row mt-1">
+						<label for="image" class="col-3 col-form-label">Añadir imagen:</label>
+						<div class="col-6">
+							<input type="file" accept=".png, .jpg, .jpeg, .mp3, .mp4, .mkv"
+								class="form-control-file position-relative top-50 start-50 translate-middle"
+								id="imagenUsuario">
+						</div>
+						<div class="col-2">
+							<img class="rounded" id="thumbnail3" alt="imagen">
+						</div>
+					</div>
+					<div class="form-group row justify-content-center">
+						<button type="button" class="btn btn-primary me-2" id="createUser" onclick="crearDataUsuario()">
+							Crear usuario
+						</button>
+						<button type="button" class="btn btn-primary me-2" id="editUser" onclick="saveUser()">
+							Editar usuario
+						</button>
+					</div>
+				</form>
+			</div>
+		</dialog>
+
+		<div class="container mx-auto p-3 ocultar" id="divUser">
+
+		</div>
+
+		<!--- JUEGO ---------->
+		<div class="container p-2 mostrar" id="divJuego">
+
+			<!--Pequeña navbar sobre el juego con distintos apartados-->
+			<nav id="navbarJuego" class="navbar bg-light px-3 mb-3 border border-primary rounded-2 navbarJuego">
+				<a class="navbar-brand  text-secondary fw-semibold">
+					Pokémon Unbreakable Ties
+				</a>
+				<ul class="nav nav-pills">
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading1">
+								<b>Trailer</b>
+							</a>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading2">
+								<b>Información</b>
+							</a>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading3">
+								<b>Sinopsis</b>
+							</a>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading4">
+								<b>Personajes</b>
+							</a>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading5">
+								<b>Imágenes</b>
+							</a>
+						</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" class="btn btn-light rounded-2">
+							<a class="nav-link" href="#scrollspyHeading6">
+								<b>Descargar</b>
+							</a>
+						</button>
+					</li>
+				</ul>
+			</nav>
+
+			<!-- Scrollspy (enlaces con scroll automático) -->
+			<div data-bs-spy="scroll" data-bs-target="#navbarJuego" data-bs-root-margin="0px 0px -40%"
+				data-bs-smooth-scroll="true" class="scrollspy-example p-3 rounded-2" tabindex="0">
+
+				<!-- Trailer -->
+				<div class="text-center">
+					<a class="btn btn-info border border-primary" data-bs-toggle="collapse" href="#trailer"
+						role="button" aria-expanded="true" aria-controls="trailer">
+						<h4 id="scrollspyHeading1">Trailer</h4>
+					</a>
+					<div class="collapse show my-3" id="trailer">
+						<div class="card card-body bg-dark">
+							<div class="video text-center w-50 mx-auto ratio ratio-16x9">
+								<iframe class="rounded-2"
+									src="videos/BETA3.mp4"
+									allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Info -->
+				<div class="text-center">
+					<a class="btn btn-info my-3" data-bs-toggle="collapse" href="#info" role="button"
+						aria-expanded="true" aria-controls="info">
+						<h4 id="scrollspyHeading2">Información</h4>
+					</a>
+					<div class="collapse show my-3" id="info">
+						<div class="card card-body bg-dark">
+							<div class="text-center mt-3">
+								<img class="rounded-2 border border-secondary py-2"
+									src="img/title.png"
+									alt="Pokémon Unbreakable Ties">
+							</div>
+							<div class="text-center my-3">
+								<p> Creado con: RPG Maker XP on Pokemon Essentials 19.1<br />
+									Desarrollador: SSamurai<br />
+									Discord: SSamurai#2501<br /><br />
+								<h2>¿Qué es Pokémon Unbreakable Ties?</h2><br />
+								<p>
+									Pokémon Unbreakable Ties es un fangame que está en desarrollo, actualmente va por la
+									Beta 3. <br />
+									Su creador es SSamurai_98. Es un juego para PC.
+								</p>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sinopsis -->
+				<div class="text-center my-3">
+					<a class="btn btn-primary" data-bs-toggle="collapse" href="#sinopsis" role="button"
+						aria-expanded="true" aria-controls="sinopsis">
+						<h4 id="scrollspyHeading3">Sinopsis</h4>
+					</a>
+					<div class="collapse show my-3" id="sinopsis">
+						<div class="card card-body bg-dark">
+							<div class="text-center mt-3">
+								<p>
+								<h2>Historia y Región</h2><br />
+								<p>
+									La historia se basa en tres amigos de la infancia, <b>Darek, Eda</b> y el jugador,
+									para los cuales su
+									objetivo es llegar a ser Maestros Pokémon, al menos por parte de tus amigos.
+									A los 16 años, cuando debes decidir qué hacer con tu vida, decides probar a pasar el
+									examen de
+									entrenador Pokémon (ya que, como jugador, nunca tuviste ninguna motivación), y la
+									profesora
+									<b>Álama</b> te hace entrega de tu Pokémon inicial, aunque no surge de la manera más
+									común. En esta
+									aventura te embarcarás en una aventura en la región de Akebia, una región tropical,
+									junto a tus 2
+									amigos de la infancia, para vencer a los líderes de gimnasio y convertiros en
+									Maestros
+									Pokémon.<br /><br />
+
+									Sin embargo, vuestro objetivo se complementa con el misterio que rodea a la
+									profesora Álama y los
+									villanos de la región, la <b>Familia Real</b>, la cual somete a la población en una
+									dictadura gracias
+									al excesivo poder que estos poseen. ¿De dónde habrán salido?
+									Junto a eso, <b>Latias y Latios</b>, los legendarios de la historia, están siendo
+									perseguidos por la
+									Familia Real para extraer un supuesto poder que solo Latios puede
+									despertar.<br /><br />
+
+									Descubre qué es lo que planean, cuál es el misterio que rodea a la profesora Álama,
+									cuáles son los
+									objetivos de la Familia Real y el misterio de los Pokémon Eón.<br />
+								</p>
+								</p>
+								<img class="rounded-2 border border-secondary py-2"
+									src="img/mapRegion0.PNG"
+									alt="Mapa de la región de Alkebia">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Personajes -->
+				<div class="text-center my-3">
+					<a class="btn btn-primary" data-bs-toggle="collapse" href="#psj" role="button" aria-expanded="true"
+						aria-controls="psj">
+						<h4 id="scrollspyHeading4">Personajes</h4>
+					</a>
+					<div class="collapse show my-3" id="psj">
+						<div class="card card-body bg-dark">
+							<div class="text-center mt-3">
+								<p>
+								<h2>Personajes principales</h2><br />
+								<!--Carrusel-->
+								<div class="card card-body align-items-center w-75 mx-auto"
+									style="background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);">
+									<div class="container text-center mx-0 text-black">
+										<div class="row row-cols-4 justify-content-md-center">
+											<!-- columna 1 -->
+											<div class="col-md-auto py-2">
+												<div class="card" style="width: 23rem;">
+													<img alt="Personaje Adrián"
+														src="img/Adrian.png"
+														class="card-img-top">
+													<div class="card-body">
+														<h5 class="card-title">
+															Adrián - Protagonista masculino
+														</h5>
+														<p class="card-text">
+															Protagonista masculino de Pkmn Unbreakable Ties.
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- columna 2 -->
+											<div class="col-md-auto py-2">
+												<div class="card" style="width: 23rem;">
+													<img src="img/Lluvia.png"
+														class="card-img-top" alt="Personaje Lluvia">
+													<div class="card-body">
+														<h5 class="card-title">
+															Lluvia - Protagonista femenina
+														</h5>
+														<p class="card-text">
+															Protagonista femenina de Pkmn Unbreakable Ties.
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- columna 3 -->
+											<div class="col-md-auto py-2">
+												<div class="card" style="width: 23rem;">
+													<img src="img/eda000.png"
+														class="card-img-top" alt="Personaje Eda">
+													<div class="card-body">
+														<h5 class="card-title">
+															Eda - Rival femenina
+														</h5>
+														<p class="card-text">
+															Rival femenina de Pkmn Unbreakable Ties.
+														</p>
+													</div>
+												</div>
+											</div>
+											<!-- columna 4 -->
+											<div class="col-md-auto py-2">
+												<div class="card" style="width: 23rem;">
+													<img src="img/darek000.png"
+														class="card-img-top" alt="Personaje Darek">
+													<div class="card-body">
+														<h5 class="card-title">
+															Darek - Rival masculino
+														</h5>
+														<p class="card-text">
+															Rival masculino de Pkmn Unbreakable Ties.
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Screenshots -->
+				<div class="text-center my-3">
+					<a class="btn btn-primary" data-bs-toggle="collapse" href="#shots" role="button"
+						aria-expanded="true" aria-controls="shots">
+						<h4 id="scrollspyHeading5">ScreenShots</h4>
+					</a>
+					<div class="collapse show my-3" id="shots">
+						<div class="card card-body bg-dark">
+							<div class="text-center my-3">
+								<h2>Imágenes del juego</h2><br />
+								<div class="row align-items-center">
+									<div class="col">
+										<div id="carouselExampleIndicators" class="carousel slide carousel-fade"
+											data-bs-ride="true">
+											<div class="carousel-indicators">
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="0" class="active" aria-current="true"
+													aria-label="Slide 1"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="1" aria-label="Slide 2"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="2" aria-label="Slide 3"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="3" aria-label="Slide 4"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="4" aria-label="Slide 5"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="5" aria-label="Slide 6"></button>
+												<button type="button" data-bs-target="#carouselExampleIndicators"
+													data-bs-slide-to="6" aria-label="Slide 7"></button>
+											</div>
+											<div class="carousel-inner"
+												style="width:512px; height:384px; margin-left: auto; margin-right: auto;">
+												<div class="carousel-item active">
+													<img alt="Riolu vs Marshtomp"
+														src="img/1.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Darek, Eda y Adrián en un puente viendo como pasan volando varios Volbeat y Illumise"
+														src="img/2.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Yang Lao en una montaña"
+														src="img/3.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Adrián vs Yang Xiao"
+														src="img/4.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Adrián y Sakura hablando"
+														src="img/5.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Adrián corriendo por una ruta"
+														src="img/6.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<div class="carousel-item">
+													<img alt="Adrían surfeando en una piscina con obstáculos"
+														src="img/7.jpg"
+														style="width:512px ; height:384px" class="d-block w-100">
+												</div>
+												<button class="carousel-control-prev" type="button"
+													data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Previous</span>
+												</button>
+												<button class="carousel-control-next" type="button"
+													data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Next</span>
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="row align-items-start">
+									</div>
+									<div class="collapse show my-5 align-items-start">
+										<h2>Características</h2><br />
+										Sistema común de gimnasios: Deberás recorrer la región de Akebia en busca de las
+										8 medallas de
+										gimnasio, y más tarde, competir con tus rivales por el título de Campeón.<br />
+										(En esta Beta sólo hay 5 líderes de gimnasio disponibles.)<br /><br />
+										Actualizado hasta la 8º generación: Actualmente están todos los Pokémon
+										disponibles. (A excepción de
+										las formas Hisui.)<br /><br />
+										Misiones secundarias durante la exploración por la región: En este fangame
+										podrás experimentar
+										ciertas misiones secundarias que podrás realizar durante tu aventura, que
+										deberás buscar por tu
+										cuenta.<br /><br />
+										Mecánicas nuevas a tener en cuenta: Actualmente podrás experimentar una mecánica
+										de recolección, el
+										cual (en un futuro), se mezclará con un sistema de crafteo.<br /><br />
+										Aspecto gráfico y tiles: Los gráficos están actualizados, la mayoría de ellos,
+										de 5ta gen, (B/W)
+										sobre todo los Overworld, en otros casos se usa de 4ta gen.<br /><br />
+										Tus Pokémon te acompañan durante la aventura: Mientras viajes por la región de
+										Akebia, podrás
+										disfrutar de tener a tu Pokémon a tu lado.<br /><br />
+										Diseños y Mugshots: Este juego incluye todos sus personajes desde cero, es
+										decir, todos ellos son
+										inventados. Además, los personajes principales y secundarios, cuentan con un
+										Mugshot con diferentes
+										expresiones faciales durante la lectura de diálogos, incluso los Pokémon cuentan
+										con ello. Entre
+										otros, panoramas diseñados y backgrounds inventados.<br /><br />
+										Historias y escenas elaboradas: Después de varios testers, todos coinciden que
+										lo más importante de
+										este juego es la historia, el desarrollo de personajes y la naturalidad de las
+										escenas involucradas
+										durante tu transcurso de juego.<br /><br />
+										Sistema de ganancia de EXP y LevelCap: Este fangame dispone de un sistema de
+										leveleo distinto, ya
+										que no ganas tanta experiencia como de costumbre (70% - 80% de lo normal),
+										además de añadir un
+										levelcap de manera que estarás solo hasta 2 niveles por encima del Pokémon más
+										fuerte de cada líder
+										de gimnasio.<br /><br />
+										Reloj interno y ciclos de tiempo: El reloj interno del juego está hecho desde
+										cero, por lo que no
+										irá en base a tu hora de tu PC. En este caso son unos 20min /día.<br /><br />
+										Por lo que podrás disfrutar de:<br />
+										- Mapeados con distintos tonos durante el día y noche.<br />
+										- Escenas con tiempo pausado para hacer que una escena tenga una tono de color
+										distino, según su
+										hora asignada.<br />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Descargar -->
+					<div class="text-center">
+						<a class="btn btn-primary my-3" data-bs-toggle="collapse" href="#download" role="button"
+							aria-expanded="true" aria-controls="credits">
+							<h4 id="scrollspyHeading6">Descargar</h4>
+						</a>
+						<div class="collapse show my-3" id="download">
+							<div class="card card-body bg-dark align-items-center">
+								<h4>Haz click en el icono para descargar</h4>
+								<a href="https://mega.nz/file/qodi3JgC#stUS6vj1WNffod-nqYKsUT64TzyL3hkB4tTOKYEans0">
+									<img alt="Logo Unbreakable Ties"
+										src="img/logo.png"
+										style="width:256px;">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--- NOTICIAS ---------->
+		<div class="container mx-auto p-3 ocultar" id="divNoticias">
+
+			<div class="d-flex justify-content-end me-5">
+				<!-- Botón del buscador -->
+				<button type="button" class="btn btn-primary mx-1 border border-secondary" onclick="items_god.showModal();">
+					<i class="fa-solid fa-magnifying-glass mx-1"></i>
+					Buscar
+				</button>
+
+				<!-- Botón de filtro/ordenación -->
+				<button type="button" class="btn btn-primary mx-1 border border-secondary" onclick="buscador_god.showModal();">
+					<i class="fa-solid fa-filter mx-1"></i>
+					Ordenar
+				</button>
+			</div>
+
+			<!-- Filtro/ordenación de publicaciones, buscador -->
+			<div class="mostrar" id="listItems">
+
+				<!-- Popup del filtro/ordenación -->
+				<dialog class="modal3 border border-secondary rounded-2 popups" id="buscador_god">
+					<div>
+						<h5 class="m-2 mb-4 pb-2 border-bottom">
+							Ordenar publicaciones por:
+						</h5>
+
+						<div class="justify-content-start">
+							<div class="d-flex ms-3 mb-4">
+								<span class="align-middle">
+									Título de la publicación
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+										onclick="orderAll('titol')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+										onclick="orderAll('titol', 'desc')"></button>
+								</div>
+							</div>
+							<div class="d-flex ms-3 mb-4">
+								<span class="align-middle">
+									Contenido de la publicación
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+										onclick="orderAll('contingut')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+										onclick="orderAll('contingut', 'desc')"></button>
+								</div>
+							</div>
+							<div class="d-flex ms-3 mb-4">
+								<span class="align-middle">
+									Nombre de la categoria
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+										onclick="orderAll('categoria')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+										onclick="orderAll('categoria', 'desc')"></button>
+								</div>
+							</div>
+							<div class="d-flex ms-3 mb-4">
+								<span class="align-middle">
+									Cantidad de likes
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+										onclick="orderAll('likes', 'desc')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+										onclick="orderAll('likes')"></button>
+								</div>
+							</div>
+							<div class="d-flex ms-3 mb-4">
+								<span class="align-middle">
+									Cantidad de dislikes
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+										onclick="orderAll('dislikes')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+										onclick="orderAll('dislikes', 'desc')"></button>
+								</div>
+							</div>
+							<div class="d-flex ms-3 mb-4" id="cantidadComentarios">
+								<span class="align-middle">
+									Cantidad de respuestas
+								</span>
+								<div class="d-flex ms-3">
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+										onclick="orderAll('quantitatComentaris')"></button>
+									<button type="button"
+										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+										onclick="orderAll('quantitatComentaris', 'desc')"></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="d-flex mt-2 justify-content-center">
+						<button type="button" id="close_filter" class="btn btn-primary"
+							onclick="close_filtro()">Cerrar</button>
+					</div>
+				</dialog>
+
+				<!-- Popup del buscador -->
+				<dialog class="modal3 border border-secondary rounded-2 popups" id="items_god">
+					<div class="form-group row m-3">
+						<div class="col-11 mb-2">
+							<select name="searcher" class="form-select m-2" id="selectSearcher" onclick="queBuscar()">
+								<option value="null">Indica en qué campo quieres buscar</option>
+								<option value="titol">Título</option>
+								<option value="contingut">Contenido</option>
+								<option value="categoria" id="categoriaPublicaciones">Categoría</option>
+								<option value="likes">Likes</option>
+								<option value="dislikes">Dislikes</option>
+								<option value="quantitatComentaris">Cantidad de comentarios</option>
+							</select>
+						</div>
+						<div class="form-group row">
+							<label for="content" class="col-3 col-form-label" id="Descript">Contenido del campo:</label>
+							<div class="col-9 justify-content-end" id="inputControler">
+								<input type="text" class="form-control mt-3" id="inputTextSearcher"
+									placeholder="Introduce el texto a buscar">
+							</div>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center">
+						<button type="button" id="BotoBuscar" class="btn btn-primary me-2"
+							onclick="buscador(); items_god.close();">
+							Buscar
+						</button>
+						<button type="button" class="btn btn-secondary ms-2"
+							onclick="items_god.close();">Cancelar</button>
+					</div>
+				</dialog>
+			</div>
+
+			<!-- IMPRESCINDIBLE, no borrar / Contenedor de publicaciones y respuestas -->
+			<div id="ordenar"></div>
+
+		</div>
+
+		<!--- FAQS ---------->
+		<div class="container p-2 ocultar" id="divFaqs">
+
+			<div class="accordion" id="accordionExample">
+				<!--FAQ 01-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingOne">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<strong>¿Qué puedo hacer en esta web?</strong>
+						</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							Esta web es, sobre todo, un espacio comunitario en el que poder interactuar con el
+							creador,
+							SSamurai, y
+							con el resto de usuarios del juego.
+							Con el tiempo se irán añadiendo diferentes funcionalidades, como (idea) una wiki.
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 02-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingTwo">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							<strong>¿Cuánto dinero cuesta el juego?</strong>
+						</button>
+					</h2>
+					<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							No tiene precio, es un fangame gratuito del que puedes disfrutar libremente.
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 03-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingThree">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							<strong>¿De dónde puedo descargar el juego?</strong>
+						</button>
+					</h2>
+					<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							Tienes varias opciones:<br />
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item border border-0">- <i class="fa-solid fa-arrow-up-long"></i>
+									Arriba de todo
+									<i class="fa-solid fa-arrow-up-long"></i>, en la barra de navegación, tienes
+									un
+									desplegable con las
+									diferentes versiones del juego, incluida la más actual.
+								</li>
+								<li class="list-group-item border border-0">- Desde <a
+										href="https://twitter.com/PkmnUnbreakTies/status/1563201286459510784"
+										target="_blank">este tuit
+										anclado</a> del
+									perfil de Twitter oficial del juego, <a href="https://twitter.com/PkmnUnbreakTies"
+										target="_blank">Pokémon
+										Unbreakable
+										Ties</a>.</li>
+								<li class="list-group-item border border-0">- Desde la <a
+										href="https://whackahack.com/juegos/pokemon-unbreakable-ties/"
+										target="_blank">presentación del
+										juego</a> en la web
+									Whackahack.</li>
+							</ul>
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 04-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFour">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							<strong>¿Se pueden jugar versiones (betas) antiguas?</strong>
+						</button>
+					</h2>
+					<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							<strong>Sí</strong>. Las tienes disponibles en el desplegable de la barra superior
+							de
+							navegación.<br />
+							<small>Ten presente que tienen menos contenido, gráficos y estilo desactualizados, y
+								te
+								puedes encontrar
+								bugs ya solucionados en la versión más reciente.</small>
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 05-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingFive">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							<strong>¿Cómo lo instalo?</strong>
+						</button>
+					</h2>
+					<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							Una vez descargado el archivo, hay que descomprimirlo y ejecutar el
+							<code>game.exe</code>
+							encontrado
+							dentro de la carpeta. No hay que instalar nada.
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 06-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSix">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+							<strong>¿Se puede jugar con joyplay (aplicación para smartphone)?</strong>
+						</button>
+					</h2>
+					<div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							<strong>No</strong>. El juego está pensado para ordenador y no se prevé adaptarlo en
+							el
+							futuro.
+							<br />
+						</div>
+					</div>
+				</div>
+				<!--FAQ 07-->
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="headingSeven">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+							<strong>He encontrado un bug / glitch / error dentro del juego. ¿Dónde puedo
+								reportarlo?</strong>
+						</button>
+					</h2>
+					<div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+						data-bs-parent="#accordionExample">
+						<div class="accordion-body">
+							Contacta con el creador del juego, SSamurai, a través de sus redes sociales.
+							<br />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--- USUARIOS ---------->
+		<div class="container p-2 ocultar" id="divForo">
+			<div>
+				<div class="d-flex justify-content-end me-5">
+					<!-- Botón del buscador -->
+					<button type="button" class="btn btn-primary mx-1 border border-secondary" onclick="users_searcher.showModal()">
+						<i class="fa-solid fa-magnifying-glass mx-1"></i>
+						Buscar
+					</button>
+	
+					<!-- Botón de filtro/ordenación -->
+					<button type="button" class="btn btn-primary mx-1 border border-secondary" onclick="ordenarUsuarios.showModal();">
+						<i class="fa-solid fa-filter mx-1"></i>
+						Ordenar
+					</button>
+				</div>
+			</div>
+
+			<!-- Los usuarios se mostraran en esta seccion -->
+			<div id="users"></div>
+		</div>
+
+		<!-- POPUP ORDENAR USUARIOS -->
+		<dialog class="modal3 border border-secondary rounded-2 popups" id="ordenarUsuarios">
+			<div>
+				<h5 class="m-2 mb-4 pb-2 border-bottom">
+					Ordenar usuarios por:
+				</h5>
+
+				<div class="justify-content-start">
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Correo del usuario
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+								onclick="usersBy('email')"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+								onclick="usersBy('email', true)"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Nombre del usuario
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+								onclick="usersBy('name')"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+								onclick="usersBy('name', true)"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Descripción del usuario
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
+								onclick="usersBy('descripcionPerfil')"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
+								onclick="usersBy('descripcionPerfil', true)"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Cantidad de publicaciones creadas
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+								onclick="usersBy('cantidadPublicaciones', true)"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+								onclick="usersBy('cantidadPublicaciones')"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Cantidad de comentarios publicados
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+								onclick="usersBy('cantidadComentarios', true)"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+								onclick="usersBy('cantidadComentarios')"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Cantidad de likes acumulados
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+								onclick="usersBy('likesTotales', true)"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+								onclick="usersBy('likesTotales')"></button>
+						</div>
+					</div>
+					<div class="d-flex ms-3 mb-4">
+						<span class="align-middle">
+							Cantidad de dislikes acumulados
+						</span>
+						<div class="d-flex ms-3">
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
+								onclick="usersBy('dislikesTotales', true)"></button>
+							<button type="button"
+								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
+								onclick="usersBy('dislikesTotales')"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-flex mt-2 justify-content-center">
+				<button type="button" class="btn btn-primary"
+					onclick="ordenarUsuarios.close();">Cerrar</button>
+			</div>
+		</dialog>
+
+		<!-- Popup del buscador de usuarios -->
+		<dialog class="modal3 border border-secondary rounded-2 popups" id="users_searcher">
+			<div class="form-group row m-3">
+				<div class="col-11 mb-2">
+					<select name="searcher" class="form-select m-2" id="users_selector" onclick="userSelectorSearch()">
+						<option value="null">Indica en qué campo quieres buscar</option>
+						<option value="email">Correo</option>
+						<option value="name">Nombre de usuarios</option>
+						<option value="descripcionPerfil">Descripción del usuario</option>
+						<option value="cantidadPublicaciones">Cantidad de publicaciones</option>
+						<option value="cantidadComentarios">Cantidad de comentarios</option>
+						<option value="likesTotales">Likes acumulados</option>
+						<option value="dislikesTotales">Dislikes acumulados</option>
+					</select>
+				</div>
+				<div class="form-group row">
+					<label for="content" class="col-3 col-form-label" id="users_field">Contenido del campo:</label>
+					<div class="col-9 justify-content-end" id="users_controler">
+						<input type="text" class="form-control mt-3" id="users_input"
+							placeholder="Introduce el texto a buscar">
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<button type="button" id="buttonUsers" class="btn btn-primary me-2"
+					onclick="userSearch(); users_searcher.close();">
+					Buscar
+				</button>
+				<button type="button" class="btn btn-secondary ms-2"
+					onclick="users_searcher.close();">Cancelar</button>
+			</div>
+		</dialog>
+
+	</div>
+	<!-- /Contenido principal -->
+
+</body>
+
+
+<!-- ====================:SCRIPTS:==================== -->
+
+<!-- BOOTSTRAP--uso general -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+	</script>
+
+<!-- BOOTSTRAP--tooltips -->
+<script>
+	const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+	const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+
+<!-- FIREBASE -->
+<script language="javascript" src="js/config.js"></script>
+<script language="javascript" src="js/firestore.js"></script>
+<script language="javascript" src="js/items.js"></script>
+<script language="javascript" src="js/storage.js"></script>
+
+<!-- Llamada a documentos JS -->
+<script language="javascript" src="js/buscar-ordenar.js"></script>
+<script language="javascript" src="js/categorias.js"></script>
+<script language="javascript" src="js/comentarios.js"></script>
+<script language="javascript" src="js/controlUsuarios.js"></script>
+<script language="javascript" src="js/eventsHtml.js"></script>
+<script language="javascript" src="js/mostradores.js"></script>
+<script language="javascript" src="js/publicaciones.js"></script>
+<script language="javascript" src="js/registroUsuarios.js"></script>
+
+<!-- Scripts funcionalidad interna -->
+<script language="javascript">
+
+	// Varios
+	function dateNow() {
+		date = new Date(Date.now());
+
+		date = date.getDate()+
+		"-"+(date.getMonth()+1)+
+		"-"+date.getFullYear()+
+		"_"+date.getHours()+
+		":"+date.getMinutes()+
+		":"+date.getSeconds();
+
+		return date;
+	}
+
+	function cerrarComentar() {
+		comentario.close();
+		document.getElementById("descriptComent").value = "";
+	};
+
+	document.getElementById("publicaciones").addEventListener("click", function () {
+		publicacion.showModal();
+		mostrarSelectCategorias("categoria");
+	});
+
+	document.getElementById("save").addEventListener("click", function () {
+		publicacion.close();
+	});
+
+	function close_filtro() {
+		buscador_god.close();
+		loadItemsFecha();
+	}
+
+	function staticImg() {
+		return "img/bugeaditto.png";
+	}
+
+</script>
+
+</html>
