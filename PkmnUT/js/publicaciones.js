@@ -170,7 +170,7 @@ function publicacionEditada(id) {
 }
 
 function eliminar(itemId, imageUrl) {
-    if (imageUrl == "https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2Fbugeaditto.png?alt=media&token=9f1c4ae6-4b85-4240-a339-c851f9d5a82c") {
+    if (imageUrl == staticImg()) {
         deleteItem(itemId);
         wait();
     }
