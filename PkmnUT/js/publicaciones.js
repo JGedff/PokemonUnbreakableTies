@@ -102,10 +102,6 @@ function restPublication(docId) {
                 }
             });
         });
-
-    setTimeout(() => {
-        loadItemsFecha();
-    }, delay);
 }
 
 function editarPubli(id) {
@@ -121,7 +117,7 @@ function editarPubli(id) {
             document.getElementById("nameuser").value = doc.data().titol;
             document.getElementById("description").value = doc.data().contingut;
             document.getElementById("imagen").src = doc.data().image;
-            document.getElementById("categories").value = doc.data().categoria;
+            mostrarSelectCategorias("categories");
             document.getElementById("show").checked = doc.data().mostraImatge;
         })
         .catch(() => {
@@ -158,7 +154,7 @@ function publicacionEditada(id) {
         titol: title,
         contingut: content,
         image: imatge,
-        categoria: category,
+        categoria: "/Categories/"+category,
         mostraImatge: showImage,
         ultimActualitzacio: date
     };
@@ -176,12 +172,15 @@ function publicacionEditada(id) {
 function eliminar(itemId, imageUrl) {
     if (imageUrl == "https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2Fbugeaditto.png?alt=media&token=9f1c4ae6-4b85-4240-a339-c851f9d5a82c") {
         deleteItem(itemId);
+        wait();
     }
     else {
         deleteFile(imageUrl)
             .then(() => {
                 deleteItem(itemId);
-            }).catch(() => {
+                wait();
+            })
+            .catch(() => {
                 showAlert("Error al intentar eliminar la imagen", "alert-danger");
             });
     }

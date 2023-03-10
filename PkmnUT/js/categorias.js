@@ -47,6 +47,10 @@ function crearCategoria() {
         })
         .catch(() => {
             showAlert("La categoría no se ha creado correctamente", "alert-danger");
+        })
+        .finally(() => {
+            mostrarEditorCategorias();
+            document.getElementById("namecategory").value = "";
         });
 }
 

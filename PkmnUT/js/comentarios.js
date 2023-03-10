@@ -27,6 +27,10 @@ function addComentarios(id) {
     let emailUser = auth.currentUser.email;
     let userName = "";
 
+    if (contenido == "") {
+        contenido = "Eso pensava yo!";
+    }
+
     selectAll(USUARIS)
         .then((arrayItems) => {
             arrayItems.forEach((usuario) => {
@@ -61,7 +65,7 @@ function addComentarios(id) {
                             showAlert("Comentario creado correctamente", "alert-success");
                         })
                         .finally(() => {
-                            loadItemsFecha();
+                            wait();
                         });
                 });
 
@@ -115,10 +119,6 @@ function restComent(docId) {
                 }
             });
         });
-    
-        setTimeout(() => {
-            loadItemsFecha();
-        }, delay);
 }
 
 function deleteItem(id) {

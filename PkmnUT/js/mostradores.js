@@ -75,96 +75,188 @@ function showElements(arrayItems) {
                         }
 
                         if (auth.currentUser == null) {
-                            document.getElementById("ordenar").innerHTML += `<div class="card card-body border border-secondary mt-3 mb-5 mx-5 contentBG">
-                                                                                    <div class="d-flex justify-content-between">
-                                                                                        <div class="mx-2 mt-1">
-                                                                                            <strong>Usuario: ${doc.data().user} (${doc.data().email})</strong>
-                                                                                        </div>
-                                                                                        <div class="mx-2 mt-1">
-                                                                                            Categoria: ${categoriaDocument[2]}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="mt-1 border-top border-bottom border-info rounded">
-                                                                                        <div class="mx-3 my-2">
-                                                                                            <h3>${doc.data().titol}</h3>
-                                                                                            <div class="mt-3 ms-4">
-                                                                                                <p>${doc.data().contingut}</p>
+
+                            if (doc.data().mostraImatge == true) {
+                                document.getElementById("ordenar").innerHTML += `<div class="card card-body border border-secondary mt-3 mb-5 mx-5 contentBG">
+                                                                                        <div class="d-flex justify-content-between">
+                                                                                            <div class="mx-2 mt-1">
+                                                                                                <strong>Usuario: ${doc.data().user} (${doc.data().email})</strong>
+                                                                                            </div>
+                                                                                            <div class="mx-2 mt-1">
+                                                                                                Categoria: ${categoriaDocument[2]}
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="ms-4 mb-1">
-                                                                                            <img src="${doc.data().image}" class="rounded mb-2" style="max-width: 350px; max-height: 350px;" "alt="${doc.data().title}">
+                                                                                        <div class="mt-1 border-top border-bottom border-info rounded">
+                                                                                            <div class="mx-3 my-2">
+                                                                                                <h3>${doc.data().titol}</h3>
+                                                                                                <div class="mt-3 ms-4">
+                                                                                                    <p>${doc.data().contingut}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="ms-4 mb-1">
+                                                                                                <img src="${doc.data().image}" class="rounded mb-2" style="max-width: 350px; max-height: 350px;" "alt="${doc.data().title}">
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="d-flex mx-2 justify-content-between">
-                                                                                        <div>
-                                                                                            <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                <img src="img/Like.png" alt="Like" style="width: 20px"/>
-                                                                                                ${doc.data().likes}
-                                                                                            </button>
-                                                                                            <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
-                                                                                                ${doc.data().dislikes}
-                                                                                            </button>
-                                                                                            <button type="button" class="btn btn-secondary mx-2 mt-2">
-                                                                                                Comentarios: ${doc.data().quantitatComentaris}
-                                                                                            </button>
-                                                                                            <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="eliminar('${doc.id}', '${doc.data().image}')">
-                                                                                                Borrar publicación
-                                                                                            </button>
-                                                                                            <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarPubli('${doc.id}')">
-                                                                                                Editar publicación
-                                                                                            </button>
+                                                                                        <div class="d-flex mx-2 justify-content-between">
+                                                                                            <div>
+                                                                                                <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    ${doc.data().likes}
+                                                                                                </button>
+                                                                                                <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    ${doc.data().dislikes}
+                                                                                                </button>
+                                                                                                <button type="button" class="btn btn-secondary mx-2 mt-2">
+                                                                                                    Comentarios: ${doc.data().quantitatComentaris}
+                                                                                                </button>
+                                                                                                <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="eliminar('${doc.id}', '${doc.data().image}')">
+                                                                                                    Borrar publicación
+                                                                                                </button>
+                                                                                                <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarPubli('${doc.id}')">
+                                                                                                    Editar publicación
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <button type="button" id="respuestas${counter}" class="respuestas btn btn-primary end-0 mx-2 mt-2" onclick="answer('${doc.id}')">
+                                                                                                    <i class="fa-solid fa-reply mx-2"></i>
+                                                                                                    Responder
+                                                                                                </button>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <div>
-                                                                                            <button type="button" id="respuestas${counter}" class="respuestas btn btn-primary end-0 mx-2 mt-2" onclick="answer('${doc.id}')">
-                                                                                                <i class="fa-solid fa-reply mx-2"></i>
-                                                                                                Responder
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="ms-5" id="r${doc.id}"></div>
-                                                                                </div>`;
-                                                                                
-                                                                                counter++;
-    
-                                                                                /* Selecciona TODOS los comentarios */
-                                                                                selectAll(COMENTARIOS)
-                                                                                    .then((array) => {
-                                                                                        array.forEach((doca) => {
-                                                                                            
-                                                                                            if (doca.id != "I4OCfTIRdQzyuEXSrnQn" && doca.data().post == documents) {
-                                                                                                document.getElementById(`r${doc.id}`).innerHTML += `<div class="card card-body border border-secondary mt-3 pb-2 contentBG">
-                                                                                                        <div class="mx-2 text-center">
-                                                                                                            <h5 class="float-start">Re: ${doc.data().titol}</h5>
-                                                                                                            <h6 class="float-end"><strong>${doca.data().user} (${doca.data().email})</strong></h6>
-                                                                                                        </div>
-                                                                                                        <div class="border-top border-bottom border-info rounded">
-                                                                                                            <div class="mt-2 mx-3">
-                                                                                                                <p>${doca.data().contingut}</p>
+                                                                                        <div class="ms-5" id="r${doc.id}"></div>
+                                                                                    </div>`;
+                                                                                    
+                                                                                    counter++;
+        
+                                                                                    /* Selecciona TODOS los comentarios */
+                                                                                    selectAll(COMENTARIOS)
+                                                                                        .then((array) => {
+                                                                                            array.forEach((doca) => {
+                                                                                                
+                                                                                                if (doca.id != "I4OCfTIRdQzyuEXSrnQn" && doca.data().post == documents) {
+                                                                                                    document.getElementById(`r${doc.id}`).innerHTML += `<div class="card card-body border border-secondary mt-3 pb-2 contentBG">
+                                                                                                            <div class="mx-2 text-center">
+                                                                                                                <h5 class="float-start">Re: ${doc.data().titol}</h5>
+                                                                                                                <h6 class="float-end"><strong>${doca.data().user} (${doca.data().email})</strong></h6>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                        <div class="d-flex justify-content-between">
-                                                                                                            <div>
-                                                                                                                <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
-                                                                                                                    ${doca.data().likes}
-                                                                                                                </button>
-                                                                                                                <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                    <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
-                                                                                                                    ${doca.data().dislikes}
-                                                                                                                </button>
-                                                                                                                <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}')">
-                                                                                                                    Borrar comentario
-                                                                                                                </button>
-                                                                                                                <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarComent('${doca.id}')">
-                                                                                                                    Editar comentario
-                                                                                                                </button>
+                                                                                                            <div class="border-top border-bottom border-info rounded">
+                                                                                                                <div class="mt-2 mx-3">
+                                                                                                                    <p>${doca.data().contingut}</p>
+                                                                                                                </div>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                    </div>`;
-                                                                                            }
+                                                                                                            <div class="d-flex justify-content-between">
+                                                                                                                <div>
+                                                                                                                    <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        ${doca.data().likes}
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        ${doca.data().dislikes}
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
+                                                                                                                        Borrar comentario
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarComent('${doca.id}')">
+                                                                                                                        Editar comentario
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>`;
+                                                                                                }
+                                                                                            });
                                                                                         });
-                                                                                    });
+                            }
+                            else {
+                                document.getElementById("ordenar").innerHTML += `<div class="card card-body border border-secondary mt-3 mb-5 mx-5 contentBG">
+                                                                                        <div class="d-flex justify-content-between">
+                                                                                            <div class="mx-2 mt-1">
+                                                                                                <strong>Usuario: ${doc.data().user} (${doc.data().email})</strong>
+                                                                                            </div>
+                                                                                            <div class="mx-2 mt-1">
+                                                                                                Categoria: ${categoriaDocument[2]}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="mt-1 border-top border-bottom border-info rounded">
+                                                                                            <div class="mx-3 my-2">
+                                                                                                <h3>${doc.data().titol}</h3>
+                                                                                                <div class="mt-3 ms-4">
+                                                                                                    <p>${doc.data().contingut}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="d-flex mx-2 justify-content-between">
+                                                                                            <div>
+                                                                                                <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    ${doc.data().likes}
+                                                                                                </button>
+                                                                                                <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    ${doc.data().dislikes}
+                                                                                                </button>
+                                                                                                <button type="button" class="btn btn-secondary mx-2 mt-2">
+                                                                                                    Comentarios: ${doc.data().quantitatComentaris}
+                                                                                                </button>
+                                                                                                <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="eliminar('${doc.id}', '${doc.data().image}')">
+                                                                                                    Borrar publicación
+                                                                                                </button>
+                                                                                                <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarPubli('${doc.id}')">
+                                                                                                    Editar publicación
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <button type="button" id="respuestas${counter}" class="respuestas btn btn-primary end-0 mx-2 mt-2" onclick="answer('${doc.id}')">
+                                                                                                    <i class="fa-solid fa-reply mx-2"></i>
+                                                                                                    Responder
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="ms-5" id="r${doc.id}"></div>
+                                                                                    </div>`;
+                                                                                    
+                                                                                    counter++;
+        
+                                                                                    /* Selecciona TODOS los comentarios */
+                                                                                    selectAll(COMENTARIOS)
+                                                                                        .then((array) => {
+                                                                                            array.forEach((doca) => {
+                                                                                                
+                                                                                                if (doca.id != "I4OCfTIRdQzyuEXSrnQn" && doca.data().post == documents) {
+                                                                                                    document.getElementById(`r${doc.id}`).innerHTML += `<div class="card card-body border border-secondary mt-3 pb-2 contentBG">
+                                                                                                            <div class="mx-2 text-center">
+                                                                                                                <h5 class="float-start">Re: ${doc.data().titol}</h5>
+                                                                                                                <h6 class="float-end"><strong>${doca.data().user} (${doca.data().email})</strong></h6>
+                                                                                                            </div>
+                                                                                                            <div class="border-top border-bottom border-info rounded">
+                                                                                                                <div class="mt-2 mx-3">
+                                                                                                                    <p>${doca.data().contingut}</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="d-flex justify-content-between">
+                                                                                                                <div>
+                                                                                                                    <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        ${doca.data().likes}
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        ${doca.data().dislikes}
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
+                                                                                                                        Borrar comentario
+                                                                                                                    </button>
+                                                                                                                    <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarComent('${doca.id}')">
+                                                                                                                        Editar comentario
+                                                                                                                    </button>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>`;
+                                                                                                }
+                                                                                            });
+                                                                                        });
+                            }
                         }
                         else {
 
@@ -194,11 +286,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -245,11 +337,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -297,14 +389,14 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
-                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}')">
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}');wait()">
                                                                                                                         Borrar comentario
                                                                                                                     </button>
                                                                                                                     <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2" onclick="editarComent('${doca.id}')">
@@ -328,14 +420,14 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
-                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}')">
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
                                                                                                                         Borrar comentario
                                                                                                                     </button>
                                                                                                                     <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarComent('${doca.id}')">
@@ -372,18 +464,15 @@ function showElements(arrayItems) {
                                                                                                     <p>${doc.data().contingut}</p>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="ms-4 mb-1">
-                                                                                                <img src="${doc.data().image}" class="rounded mb-2" style="max-width: 350px; max-height: 350px;" "alt="${doc.data().title}">
-                                                                                            </div>
                                                                                         </div>
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -423,18 +512,15 @@ function showElements(arrayItems) {
                                                                                                     <p>${doc.data().contingut}</p>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="ms-4 mb-1">
-                                                                                                <img src="${doc.data().image}" class="rounded mb-2" style="max-width: 350px; max-height: 350px;" "alt="${doc.data().title}">
-                                                                                            </div>
                                                                                         </div>
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -482,14 +568,14 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
-                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}')">
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}');wait()">
                                                                                                                         Borrar comentario
                                                                                                                     </button>
                                                                                                                     <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2" onclick="editarComent('${doca.id}')">
@@ -513,14 +599,14 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
-                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}')">
+                                                                                                                    <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
                                                                                                                         Borrar comentario
                                                                                                                     </button>
                                                                                                                     <button type="button" id="editar${counter}" class="editar btn btn-info mx-2 mt-2 ocultar" onclick="editarComent('${doca.id}')">
