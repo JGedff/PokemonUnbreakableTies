@@ -581,7 +581,7 @@
 						<div class="card card-body bg-dark">
 							<div class="video text-center w-50 mx-auto ratio ratio-16x9">
 								<iframe class="rounded-2"
-									src="videos/BETA3.mp4"
+									src="img/BETA3.mp4"
 									allowfullscreen></iframe>
 							</div>
 						</div>
@@ -948,10 +948,10 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-										onclick="orderAll('titol')"></button>
+										onclick="orderAll('titol');buscador_god.close()"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-										onclick="orderAll('titol', 'desc')"></button>
+										onclick="orderAll('titol', 'desc');buscador_god.close()"></button>
 								</div>
 							</div>
 							<div class="d-flex ms-3 mb-4">
@@ -961,10 +961,10 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-										onclick="orderAll('contingut')"></button>
+										onclick="orderAll('contingut');buscador_god.close()"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-										onclick="orderAll('contingut', 'desc')"></button>
+										onclick="orderAll('contingut', 'desc');buscador_god.close()"></button>
 								</div>
 							</div>
 							<div class="d-flex ms-3 mb-4">
@@ -974,10 +974,10 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-										onclick="orderAll('categoria')"></button>
+										onclick="orderAll('categoria');buscador_god.close();"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-										onclick="orderAll('categoria', 'desc')"></button>
+										onclick="orderAll('categoria', 'desc');buscador_god.close()"></button>
 								</div>
 							</div>
 							<div class="d-flex ms-3 mb-4">
@@ -987,10 +987,10 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-										onclick="orderAll('likes', 'desc')"></button>
+										onclick="orderAll('likes', 'desc');buscador_god.close()"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-										onclick="orderAll('likes')"></button>
+										onclick="orderAll('likes');buscador_god.close()"></button>
 								</div>
 							</div>
 							<div class="d-flex ms-3 mb-4">
@@ -1000,10 +1000,10 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-										onclick="orderAll('dislikes')"></button>
+										onclick="orderAll('dislikes');buscador_god.close()"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-										onclick="orderAll('dislikes', 'desc')"></button>
+										onclick="orderAll('dislikes', 'desc');buscador_god.close()"></button>
 								</div>
 							</div>
 							<div class="d-flex ms-3 mb-4" id="cantidadComentarios">
@@ -1013,17 +1013,17 @@
 								<div class="d-flex ms-3">
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-										onclick="orderAll('quantitatComentaris')"></button>
+										onclick="orderAll('quantitatComentaris');buscador_god.close()"></button>
 									<button type="button"
 										class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-										onclick="orderAll('quantitatComentaris', 'desc')"></button>
+										onclick="orderAll('quantitatComentaris', 'desc'); buscador_god.close()"></button>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="d-flex mt-2 justify-content-center">
 						<button type="button" id="close_filter" class="btn btn-primary"
-							onclick="close_filtro()">Cerrar</button>
+							onclick="buscador_god.close()">Cerrar</button>
 					</div>
 				</dialog>
 
@@ -1259,10 +1259,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-								onclick="usersBy('email')"></button>
+								onclick="usersBy('email');ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-								onclick="usersBy('email', true)"></button>
+								onclick="usersBy('email', true);ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1272,10 +1272,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-								onclick="usersBy('name')"></button>
+								onclick="usersBy('name');ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-								onclick="usersBy('name', true)"></button>
+								onclick="usersBy('name', true);ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1285,10 +1285,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-a-z me-1"
-								onclick="usersBy('descripcionPerfil')"></button>
+								onclick="usersBy('descripcionPerfil');ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-a-z ms-1"
-								onclick="usersBy('descripcionPerfil', true)"></button>
+								onclick="usersBy('descripcionPerfil', true);ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1298,10 +1298,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-								onclick="usersBy('cantidadPublicaciones', true)"></button>
+								onclick="usersBy('cantidadPublicaciones', true);ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-								onclick="usersBy('cantidadPublicaciones')"></button>
+								onclick="usersBy('cantidadPublicaciones');ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1311,10 +1311,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-								onclick="usersBy('cantidadComentarios', true)"></button>
+								onclick="usersBy('cantidadComentarios', true);ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-								onclick="usersBy('cantidadComentarios')"></button>
+								onclick="usersBy('cantidadComentarios');ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1324,10 +1324,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-								onclick="usersBy('likesTotales', true)"></button>
+								onclick="usersBy('likesTotales', true);ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-								onclick="usersBy('likesTotales')"></button>
+								onclick="usersBy('likesTotales');ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 					<div class="d-flex ms-3 mb-4">
@@ -1337,10 +1337,10 @@
 						<div class="d-flex ms-3">
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-down-1-9 me-1"
-								onclick="usersBy('dislikesTotales', true)"></button>
+								onclick="usersBy('dislikesTotales', true);ordenarUsuarios.close()"></button>
 							<button type="button"
 								class="btn btn-sm border border-secondary rounded-2 fa-solid fa-arrow-up-1-9 ms-1"
-								onclick="usersBy('dislikesTotales')"></button>
+								onclick="usersBy('dislikesTotales');ordenarUsuarios.close()"></button>
 						</div>
 					</div>
 				</div>
@@ -1457,6 +1457,12 @@
 
 	function staticImg() {
 		return "img/bugeaditto.png";
+	}
+
+	function wait() {
+		setTimeout(() => {
+            loadItemsFecha();
+        }, delay);
 	}
 
 </script>
