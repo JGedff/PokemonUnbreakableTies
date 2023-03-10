@@ -100,11 +100,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -148,11 +148,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
@@ -189,11 +189,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -237,11 +237,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
@@ -286,11 +286,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -337,11 +337,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -389,11 +389,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}');wait()">
@@ -420,11 +420,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
@@ -468,11 +468,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -516,11 +516,11 @@ function showElements(arrayItems) {
                                                                                         <div class="d-flex mx-2 justify-content-between">
                                                                                             <div>
                                                                                                 <button type="button" id="like${counter}" class="likes btn btn-primary mx-2 mt-2" onclick="likes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                    <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                     ${doc.data().likes}
                                                                                                 </button>
                                                                                                 <button type="button" id="dislike${counter}" class="dislikes btn btn-primary mx-2 mt-2" onclick="dislikes('${doc.id}', ${counter})">
-                                                                                                    <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Disike" style="width: 20px"/>
+                                                                                                    <img src="img/Dislike.png" alt="Disike" style="width: 20px"/>
                                                                                                     ${doc.data().dislikes}
                                                                                                 </button>
                                                                                                 <button type="button" class="btn btn-secondary mx-2 mt-2">
@@ -568,11 +568,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2" onclick="restComent('${doca.id}');wait()">
@@ -599,11 +599,11 @@ function showElements(arrayItems) {
                                                                                                             <div class="d-flex justify-content-between">
                                                                                                                 <div>
                                                                                                                     <button type="button" id="like${counter}" class="likes btn btn-primary btn-sm mx-2 mt-2" onclick="likes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FLike.png?alt=media&token=a5b1e6c4-3b1a-452f-97cd-cabb8aa38ea3" alt="Like" style="width: 20px"/>
+                                                                                                                        <img src="img/Like.png" alt="Like" style="width: 20px"/>
                                                                                                                         ${doca.data().likes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="dislike${counter}" class="dislikes btn btn-primary btn-sm mx-2 mt-2" onclick="dislikes2('${doca.id}', ${counter})">
-                                                                                                                        <img src="https://firebasestorage.googleapis.com/v0/b/actprova-d4af7.appspot.com/o/imgHtml%2FDislike.png?alt=media&token=32ef4bce-ae83-42a9-b23a-26f528465f99" alt="Dislike" style="width: 20px"/>
+                                                                                                                        <img src="img/Dislike.png" alt="Dislike" style="width: 20px"/>
                                                                                                                         ${doca.data().dislikes}
                                                                                                                     </button>
                                                                                                                     <button type="button" id="eliminar${counter}" class="eliminar btn btn-danger mx-2 mt-2 ocultar" onclick="restComent('${doca.id}');wait()">
