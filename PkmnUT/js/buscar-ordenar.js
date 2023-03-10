@@ -135,7 +135,6 @@ function loadItemsFecha() {
 
     selectAll(PUBLICACIONES, "fecha")
         .then((arrayItems) => {
-            arrayItems.reverse();
             showElements(arrayItems);
         })
         .catch(() => {
@@ -144,7 +143,7 @@ function loadItemsFecha() {
 }
 
 function orderAll(field, desc) {
-    close_filtro();
+
     //Si la variable desc no es nula
     if (desc != null) {
         //Muestra los elementos de la coleccion USUARIS ordenados por el campo indicado
