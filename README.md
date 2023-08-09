@@ -1,4 +1,4 @@
-# firebaseProject
+# Pokemon Unbreakable Ties
 This project is a website inspired by the fangame "Pokémon Unbreakable Ties", made with HTML, CSS and JavaScript connected to Firebase.
 
 Before starting, you must make some changes in the files:
